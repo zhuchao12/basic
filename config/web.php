@@ -43,14 +43,15 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl' => true,  //美化url==ture
+            'enableStrictParsing' => false,  //不启用严格解析
+            'showScriptName' => false,   //隐藏index.php
             'rules' => [
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
@@ -68,7 +69,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '192.168.157.1'],
+        'allowedIPs' => ['127.0.0.1', '192.168.*.*'],
     ];
 }
 
