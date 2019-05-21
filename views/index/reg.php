@@ -46,13 +46,6 @@
                                 <label for="email"><i class="am-icon-envelope-o"></i></label>
                                 <input type="email" name="user_email"  id="email"  lay-verify="required|email"placeholder="请输入邮箱账号">
                             </div>
-                            <div class="verification">
-                                <label for="email_code"><i class="am-icon-code-fork"></i></label>
-                                <input type="text" name="user_code" id="email_code"  lay-verify="required" placeholder="请输入验证码">
-                                <a class="btn" href="javascript:void(0);"  id="sendEmailCode">
-                                    <span class="dyButton" id="span_email">获取</span>
-                                </a>
-                            </div>
                             <div class="user-pass">
                                 <label for="email_pwd"><i class="am-icon-lock"></i></label>
                                 <input type="password" name="user_pwd" id="email_pwd" lay-verify="checkpwd1" placeholder="设置密码">
@@ -62,7 +55,7 @@
                                 <input type="password" name="user_pwd1" id="email_pwd1" lay-verify="checkpwd2"  placeholder="确认密码">
                             </div>
                             <div class="am-cf">
-                                <input type="button" lay-submit lay-filter="telDemo" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                                <input type="button" lay-submit lay-filter="telDemo" id="btn" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
                             </div>
                         </form>
 
@@ -110,7 +103,7 @@
     </div>
 
     <div class="footer ">
-        <div class="footer-hd ">
+            <div class="footer-hd ">
             <p>
                 <a href="# ">恒望科技</a>
                 <b>|</b>
@@ -134,3 +127,39 @@
 </body>
 
 </html>
+
+      <script>
+            $('#btn').click(function () {
+               var email = $('#email').val();
+//               alert(email);
+               var email_pwd = $('#email_pwd').val();
+               var email_pwd1 = $('#email_pwd1').val();
+
+                if(email == ""){
+                    alert('邮箱不能为空');
+                    return false
+                }else if(email_pwd==""){
+                    alert('密码不能为空');
+                    return false
+                }else if(email_pwd1==""){
+                    alert('确认密码不能为空');
+                    return false
+                }
+
+                $.ajax({
+                    url:'/index/regadd',
+                    data:{email:email,email_pwd:email_pwd,email_pwd1:email_pwd},
+                    type:'post',
+                    dataType:'json',
+                    success:function (msg) {
+                        if(msg.error == 1000 ){
+                            alert(1111);
+                        }else {
+                            alert(2222);
+                        }
+                    }
+                })
+
+            })
+
+</script>
